@@ -1,0 +1,63 @@
+header {
+    height: 70px;
+    background: rgb(246, 246, 246);
+    margin: 0;
+    background: url('../assets/funky-lines.png');
+}
+
+main {
+    height: calc(100vh - 80px);
+    overflow: hidden;
+}
+
+.title {
+    font-family: 'Monoton', cursive;
+    font-size: 2.5rem;
+    font-weight: bold;
+    padding: 5px 10px;
+    color: rgb(0, 54, 124);
+    transition: .6s;
+    span {
+        position: relative;
+    }
+    &:hover {
+        cursor: pointer;
+        span.first {
+            animation: udaan .9s;
+            animation-fill-mode: forwards;
+        }
+        span.last {
+            animation: udaan-down .6s;
+            animation-fill-mode: forwards;
+        }
+    }
+}
+
+@keyframes udaan {
+    0% {
+        top: 0px;
+        transform: scale(1, 1);
+        text-decoration: none;
+    }
+    100% {
+        font-size: 45px;
+        top: -7px;
+        transform: scale(2, 2);
+        text-decoration: underline;
+        color: rgb(95, 137, 190);
+    }
+}
+
+@keyframes udaan-down {
+    0% {
+        top: 0px;
+        text-decoration: none;
+    }
+    100% {
+        top: 5px;
+        transform: scale(3, 3);
+        text-decoration: underline;
+        font-size: 30px;
+        color: rgb(4, 35, 77);
+    }
+}

@@ -1,0 +1,40 @@
+<div class="container">
+  <mat-card class="content border">
+    <h2>Add New Screen</h2>
+    <form>
+      <h4 class="ul">Screen Name</h4>
+      <mat-form-field class="" floatLabel="never" appearance="outline">
+        <input name="screenName" [(ngModel)]="screenInfo.name" matInput placeholder="Name">
+      </mat-form-field>
+
+      <h4 class="ul">
+        <span style="position: relative">
+          Seating Info <button (click)="addNewRow()" class="add-button" matTooltip="Add new Row" color="primary"
+            mat-mini-fab><i class="material-icons">
+              add
+            </i></button>
+        </span></h4>
+
+      <div *ngFor="let row of screenInfo.seatInfo; let i = index">
+        <mat-form-field class="" style="width: 30px">
+          <input [name]="'rowName' + i" [(ngModel)]="screenInfo['seatInfo'][i]['rowName']" matInput matTooltip="Row No">
+        </mat-form-field>
+
+        <input min="0" class="no-input" [name]="'noOfSeats' + i" [(ngModel)]="screenInfo['seatInfo'][i]['noOfSeats']"
+          type="number" matTooltip="No of Seats" (change)="updateDropdownList($event.target.value, i)">
+
+        <mat-form-field style="width: 70px">
+          <mat-select [disabled]="screenInfo['seatInfo'][i]['dropdownList'].length === 0" [name]="'aisleSeat' + i"
+            multiple matTooltip="Aisle Seats" [(ngModel)]="screenInfo['seatInfo'][i]['aisleSeats']">
+            <mat-option *ngFor="let option of row.dropdownList; let j = index" [value]="j + 1">{{j + 1}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout fxLayoutAlign="center" style="margin-top: 20px;">
+        <button mat-raised-button class="button" color="primary" (click)="addScreen()">Submit</button>
+        <button mat-raised-button class="button" routerLink="/screens">Cancel</button>
+      </div>
+    </form>
+  </mat-card>
+</div>

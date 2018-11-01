@@ -1,0 +1,62 @@
+<div class="container">
+  <mat-spinner class="spinner" *ngIf="isLoading"></mat-spinner>
+  <mat-card class="border" *ngIf="!isLoading">
+    <!--  <div>
+      <a mat-raised-button routerLink="/screens/add">Add Screen</a>
+    </div>
+    <br> -->
+    <div>
+      <h3>Select Screen</h3>
+      <mat-chip-list>
+        <mat-chip *ngFor="let screen of screenList; let i = index" (click)="selectScreen(i)">
+          {{screen.name}}
+        </mat-chip>
+      </mat-chip-list>
+    </div>
+
+    <div *ngIf="currentScreen.availableSeats > 0; else elseBlock">
+
+      <mat-card class="screen">
+        <div fxLayout="column" class="seating">
+
+          <h2>{{currentScreen.name}}</h2>
+
+          <mat-chip-list class="stats">
+            <mat-chip class="available">Available</mat-chip>
+            <mat-chip class="reserved">Reserved</mat-chip>
+          </mat-chip-list>
+
+          <mat-chip-list fxLayout="row" class="row" fxLayoutAlign="center start" *ngFor="let row of currentScreen.seating; let rowIndex = index">
+            <mat-chip fxFlex="0 0 auto" [ngClass]="{seat : true,  available : seat.available,selected : seat.selected, aisle: seat.isAisle,reserved : seat.reserved }"
+              *ngFor="let seat of row; let seatIndex = index" (click)="selectSeat(seat, rowIndex, seatIndex)">
+              {{seat.seatNo}}
+            </mat-chip>
+          </mat-chip-list>
+
+        </div>
+
+        <div class="display"></div>
+      </mat-card>
+      <div fxLayout="row" fxLayoutAlign="space-between center" style="margin-top: 30px;font-family: 'Monoton', cursive;">
+        <div>
+          No of Seats : {{selectedSeats.length}}<br>
+          <span *ngIf="selectedSeats.length > 0">
+            Selected Seats : {{selectedSeats.join(', ')}}
+          </span>
+        </div>
+        <button mat-raised-button class="button" [disabled]="selectedSeats.length == 0" [matBadge]="selectedSeats.length"
+          matBadgePosition="after" matBadgeColor="primary" (click)="bookSeats()">Book</button>
+      </div>
+    </div>
+
+    <ng-template #elseBlock>
+      <mat-card class="message-block screen">
+        <h1>
+          Booked
+        </h1>
+      </mat-card>
+    </ng-template>
+  </mat-card>
+</div>
+
+<!-- {{currentScreen | json}} -->

@@ -1,0 +1,121 @@
+$white: #fff;
+.container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    .spinner {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.screen {
+    margin: 30px auto;
+    max-width: 1400px;
+    padding: 0; // background: rgb(241, 241, 241);
+    .seating {
+        margin: 5px 0 15px 0;
+        h2 {
+            margin: 0;
+            margin-bottom: 40px;
+            padding: 15px;
+            text-align: center;
+            text-transform: capitalize;
+            background: rgba(230, 230, 230, 0.6);
+            color: rgb(122, 80, 0);
+        }
+        .row {
+            margin: 7px;
+            .seat {
+                // border-radius: 50%; // background: lightgrey;
+                // padding: 7px;
+                // margin: 3px;
+                // color: white;
+                // background: rgb(55, 129, 61);
+                // display: inline-block;
+                text-align: center; // font-size: 12px;
+            }
+        }
+    }
+    .display {
+        width: 80%;
+        height: 15px;
+        border-top: 5px solid rgb(192, 192, 192);
+        background: rgb(51, 51, 51);
+        margin: 15px auto;
+    }
+}
+
+.available {
+    background: rgb(98, 150, 91);
+    transition: .6s;
+    cursor: pointer;
+    &:hover {
+        background: rgb(4, 65, 4);
+        color: $white;
+    }
+}
+
+.reserved {
+    background: lightgrey;
+    cursor: not-allowed;
+}
+
+.aisle {
+    margin-left: 20px !important;
+    margin-right: 20px !important;
+}
+
+.selected {
+    background: rgb(15, 94, 15);
+    color: white;
+}
+
+.stats {
+    position: relative;
+    top: -30px;
+    margin: 0 10px;
+}
+
+@media screen and (max-width: 1050px) {
+    .seat,
+    .stats mat-chip {
+        font-size: 10px;
+        padding: 5px 7px;
+        margin: 3px;
+    }
+    .aisle {
+        margin-left: 10px !important;
+        margin-right: 10px !important;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .seat,
+    .stats mat-chip {
+        font-size: 8px;
+        padding: 3px;
+        margin: 1px;
+    }
+    .seating {
+        overflow: auto;
+    }
+}
+
+.message-block.screen {
+    height: 300px;
+    text-align: center;
+    font-size: 40px;
+    background: rgb(245, 245, 245);
+    position: relative;
+    text-transform: capitalize;
+    h1 {
+        position: absolute;
+        top: 50%;
+        color: rgb(15, 94, 15);
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
